@@ -1,13 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router";
 import { Layout } from "./Layout/Layout";
-
-// Provicional
-const Dashboard = () => <div>Dashboard Content</div>;
-const Transactions = () => <div>Transactions Content</div>;
-const Budget = () => <div>Budget Content</div>;
-const Savings = () => <div>Savings Content</div>;
-const Investments = () => <div>Investments Content</div>;
-const Reports = () => <div>Reports Content</div>;
+import { Dashboard } from "./pages/Dashboard";
+import { Transactions } from "./pages/Transactions";
+import { Accounts } from "./pages/Accounts";
+import { Budget } from "./pages/Budget";
+import { Savings } from "./pages/Savings";
+import { Reports } from "./pages/Reports";
 
 function App() {
   return (
@@ -18,7 +16,7 @@ function App() {
           <Route path="transactions" element={<Transactions />} />
           <Route path="budget" element={<Budget />} />
           <Route path="savings" element={<Savings />} />
-          <Route path="investments" element={<Investments />} />
+          <Route path="accounts" element={<Accounts />} />
           <Route path="reports" element={<Reports />} />
         </Route>
       </Routes>
