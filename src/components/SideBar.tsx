@@ -4,32 +4,32 @@ import {
   CoinIcon,
   GoalIcon,
   HomeIcon,
-  InvestmentIcon,
+  PigCoinIcon,
   SelectorIcon,
   TransactionIcon,
 } from "../icons/SideBarIcons";
 
 const navItems = [
   { name: "Dashboard", href: "/", icon: HomeIcon },
-  { name: "Transactions", href: "/transactions", icon: TransactionIcon },
+  { name: "Accounts", href: "/accounts", icon: PigCoinIcon },
   { name: "Budget", href: "/budget", icon: CoinIcon },
   { name: "Savings Goals", href: "/savings", icon: GoalIcon },
-  { name: "Investments", href: "/investments", icon: InvestmentIcon },
+  { name: "Transactions", href: "/transactions", icon: TransactionIcon },
   { name: "Reports", href: "/reports", icon: BarChartIcon },
 ];
 
 export function SideBar() {
   return (
     <aside className="flex-col justify-between bg-white shadow-md w-56 hidden md:flex pt-3 h-[90vh]">
-      <nav>
+      <nav> 
         <ul>
           {navItems.map((item) => (
-            <li key={item.name}>
+            <li className="text-gray-700" key={item.name}>
               <NavLink
                 to={item.href}
                 className={({ isActive }) =>
-                  `flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100 ${
-                    isActive ? "bg-gray-100 text-blue-500" : ""
+                  `flex items-center px-6 py-3  hover:bg-gray-100 ${
+                    isActive ? "bg-gray-100 text-blue-500 font-semibold" : ""
                   }`
                 }
               >
