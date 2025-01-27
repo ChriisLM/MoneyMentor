@@ -4,11 +4,11 @@ import { SideBar } from "../components/SideBar";
 
 export function Layout() {
   return (
-    <main>
+    <main className="h-screen flex flex-col">
       <Header />
-      <section className="flex">
+      <section className="flex flex-grow overflow-hidden">
         <SideBar />
-        <div className="flex-grow">
+        <div className="flex-grow overflow-y-auto">
           <Outlet />
         </div>
       </section>
