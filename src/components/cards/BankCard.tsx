@@ -1,60 +1,29 @@
-import { AddCircleIcon } from "../../icons/Icons";
-
-const cards = [{ id: "1", name: "Credit Card", balance: -1000, limit: 5000 },{id:"2", name: "Debit Card", balance: -200, limit: 4000}];
-
-const currency = { label: "USD", value: "usd", symbol: "$" };
-
-const exchangeRates = {
-  usd: 1,
-  eur: 0.85,
-  gbp: 0.73,
-  jpy: 110.14,
-  cad: 1.25,
-};
-
-function convertCurrency(amount: number, from: string, to: string): number {
-  return (
-    amount *
-    (exchangeRates[to as keyof typeof exchangeRates] /
-      exchangeRates[from as keyof typeof exchangeRates])
-  );
+interface BankCardProps {
+  styleType: "visa" | "mastercard";
 }
 
-export function BankCard() {
+export function BankCard({ styleType }: BankCardProps) {
+  const cardStyles: Record<"visa" | "mastercard", string> = {
+    visa: "bg-blue-600 text-white h-44 p-6 rounded-lg shadow-md relative",
+    mastercard: "bg-black text-white h-44 p-6 rounded-lg shadow-md relative",
+  };
+
   return (
-    <div className="rounded-lg border bg-card text-card-foreground shadow">
-      <div className="flex flex-row items-center justify-between pb-2 space-y-1.5 p-6">
-        <h4 className="font-bold leading-none tracking-tight text-xl">
-          Cards
-        </h4>
-        <button className="flex gap-2 bg-gray-900 text-zinc-50 text-sm px-3 py-2 rounded-lg font-medium hover:bg-gray-800">
-          <AddCircleIcon className="w-5 h-5" />
-          Add Card
-        </button>
-      </div>
-      <div className="flex flex-col p-6 pt-0">
-        <ul className="space-y-2">
-          {cards.map((card) => (
-            <li key={card.id} className="flex justify-between items-center">
-              <span>{card.name}</span>
-              <div className="text-right">
-                <div className="font-semibold">
-                  {currency.symbol}
-                  {convertCurrency(card.balance, "usd", currency.value).toFixed(
-                    2
-                  )}
-                </div>
-                <div className="text-sm text-muted-foreground text-gray-500">
-                  Limit: {currency.symbol}
-                  {convertCurrency(card.limit, "usd", currency.value).toFixed(
-                    2
-                  )}
-                </div>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
+    <div className={cardStyles[styleType]}>
+      <h2 className="text-lg font-semibold mb-3">
+        {styleType === "visa" ? "Visa Card" : "MasterCard"}
+      </h2>
+      <p className="text-4xl pt-1 font-bold">$450</p>
+      <p className="absolute bottom-5 left-6 text-xs">Nombre</p>
+      {styleType === "visa" && (
+        <div className="absolute top-2 right-4 text-2xl font-bold">VISA</div>
+      )}
+      {styleType === "mastercard" && (
+        <div className="absolute top-4 right-4">
+          <div className="w-6 h-6 bg-red-500 rounded-full translate-x-3 opacity-95 inline-block"></div>
+          <div className="w-6 h-6 bg-yellow-500 rounded-full inline-block ml-1"></div>
+        </div>
+      )}
     </div>
   );
 }
