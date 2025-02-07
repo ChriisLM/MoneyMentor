@@ -17,7 +17,7 @@ function App() {
           <Route path="budget" element={<Budget />} />
           <Route path="savings" element={<Savings />} />
           <Route path="accounts" element={<Accounts />} />
-          <Route path="reports" element={<Reports />} />
+          <Route path="reports" element={<Reports/>} />
         </Route>
       </Routes>
     </BrowserRouter>
