@@ -6,7 +6,16 @@ import {
 } from "../services/financeService";
 
 export const useFinanceData = () => {
-  const { transactions, budgets, savingGoals, accounts } = useFinanceStore();
+  const {
+    transactions,
+    budgets,
+    savingGoals,
+    accounts,
+    addAccount,
+    addBudget,
+    addSavingGoal,
+    addTransaction,
+  } = useFinanceStore();
 
   const totalBalance = calculateTotalBalance(accounts);
 
@@ -27,5 +36,9 @@ export const useFinanceData = () => {
     budgets,
     savingGoals,
     accounts,
+    addAccount,
+    addBudget,
+    addSavingGoal,
+    addTransaction,
   };
 };
