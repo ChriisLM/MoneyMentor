@@ -1,38 +1,44 @@
-import { ExpenseCard } from "../components/cards/ExpenseCard";
 import { Title } from "../components/Title";
-import { AddCircleIcon } from "../icons/Icons";
 import { TabBudget } from "../components/TabBudget";
+import { useFinanceData } from "../hooks/useFinanceData";
+import { BudgetCard } from "../components/cards/BudgetCard";
+import { ButtonAdd } from "../components/ButtonAdd";
+import { useState } from "react";
+import { FormAddDialog } from "../components/FormAddDialog";
+import { type Budget } from "../types";
 
 export function Budget() {
+  const { budgets, addBudget } = useFinanceData();
+  const [open, setOpen] = useState(false);
+
+  const handleAddBudget = (data: Budget) => {
+    addBudget(data);
+  };
+
   return (
-    <section className="px-8 py-4">
+    <section className="px-8 pb-4">
       <div className="flex flex-row items-center justify-between pr-2">
         <Title title="Budget" />
-        <button className="flex gap-2 bg-gray-900 text-zinc-50 text-sm px-3 py-2 rounded-lg font-medium hover:bg-gray-800">
-          <AddCircleIcon className="w-5 h-5" />
+        <ButtonAdd icon onClick={() => setOpen(true)}>
           Add Budget Category
-        </button>
+        </ButtonAdd>
+        <FormAddDialog
+          type="budget"
+          open={open}
+          onOpenChange={setOpen}
+          onSubmit={(data) => handleAddBudget(data)}
+        />
       </div>
       <TabBudget />
       <div className="grid gap-4 lg:grid-cols-2 py-6 px-2">
-        <ExpenseCard
-          title="Groceries"
-          spent={300}
-          total={500}
-          color="bg-green-500"
-        />
-        <ExpenseCard
-          title="Entertainment"
-          spent={150}
-          total={300}
-          color="bg-blue-500"
-        />
-        <ExpenseCard
-          title="Utilities"
-          spent={400}
-          total={600}
-          color="bg-yellow-500"
-        />
+        {budgets.map((budget) => (
+          <BudgetCard
+            key={budget.id}
+            title={budget.category}
+            spent={budget.spent}
+            total={budget.limit}
+          />
+        ))}
       </div>
     </section>
   );
