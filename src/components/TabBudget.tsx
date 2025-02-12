@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { BudgetCard } from "./cards/BudgetCard";
 import { useFinanceData } from "../hooks/useFinanceData";
-import { calculateBudgetTotal } from "../utils/calculateBudgetTotal";
+import { calculateBudgetTotal } from "../services/financeService";
 
 export function TabBudget() {
   const [activeTab, setActiveTab] = useState("monthly");
