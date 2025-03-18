@@ -29,7 +29,9 @@ export function SideBar() {
     <>
       <button
         onClick={handleToggleMenu}
-        className="fixed top-4 left-4 z-40 md:hidden bg-transparent rounded-md p-1"
+        className={`fixed top-4 left-4 z-40 md:hidden bg-transparent rounded-md p-1 ${
+          isOpen ? "hidden" : "fixed"
+        }`}
       >
         <MenuIcon className="h-5 w-5 dark:text-gray-200" />
       </button>
@@ -51,7 +53,7 @@ export function SideBar() {
       `}
       >
         <section>
-          <div className="flex justify-center pb-4">
+          <div className="flex justify-center py-4">
             <NavLink to={"/"} className="text-2xl py-1 font-bold text-gray-200">
               MoneyMentor
             </NavLink>
@@ -86,13 +88,13 @@ export function SideBar() {
         <div className="flex items-center justify-between rounded-lg hover:bg-zinc-800 mx-3 px-2 py-2 my-2 cursor-pointer">
           <div className="flex items-center">
             <img
-              src="https://cdn-icons-png.flaticon.com/512/4794/4794936.png"
+              src="https://avatars.githubusercontent.com/u/169501974?v=4"
               alt="avatar"
               className="bg-neutral-300 h-9 w-9 rounded-md"
             />
-            <div className="flex flex-col justify-center text-xs text-gray-200 ml-2">
-              <h5 className="font-bold">Nombre</h5>
-              <span>m@example.com</span>
+            <div className="flex flex-col justify-center text-xs text-gray-200 ml-2 overflow-hidden">
+              <h5 className="font-bold">ChriisLM</h5>
+              <span>christian878@gmail.com</span>
             </div>
           </div>
           <span>
